@@ -1,5 +1,6 @@
 <?php include("common/header.php");
-      include("common/leftnav.php")   ?>
+      include("common/leftnav.php");
+      include("common/conn_db.php");   ?>
    <div id="right-panel" class="right-panel">
             <?php include("common/midheader.php") ?>
 <div class="breadcrumbs">
@@ -119,7 +120,7 @@
                             </div>
                             <div class="card-body">
 
-                              <select data-placeholder="Choose a Country..." class="standardSelect" tabindex="1">
+                              <select data-placeholder="    ose a Country..." class="standardSelect" tabindex="1">
                                 <option value="" label="default"></option>
                                 <option value="United States">United States</option>
                                 <option value="United Kingdom">United Kingdom</option>
@@ -215,6 +216,46 @@
                     </div> --> 
                 </div>
           </div>
+          <div class="animated fadeIn">
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <strong class="card-title">Posts Data</strong>
+                        </div>
+                        <div class="card-body">
+                            <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Title</th>
+                                        <th>Description</th>
+                                        <th>File 1</th>
+                                        <th>File 2</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                    <?php  $accs = mysqli_query($conn,"select * from tbl_accountant"); 
+                        if(!empty($accs)){
+                        while($acc = mysqli_fetch_array($accs))
+                        {
+                        ?>
+                                    <tr>
+                                        <td>Tiger Nixon</td>
+                                        <td>System Architect</td>
+                                        <td>Edinburgh</td>
+                                        <td>$320,800</td>
+                                    </tr>
+                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
       </div>
 
 </div>
