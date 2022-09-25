@@ -222,7 +222,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <strong class="card-title">Posts Data</strong>
+                            <strong class="card-title">Your Feeds</strong>
                         </div>
                         <div class="card-body">
                             <table id="bootstrap-data-table" class="table table-striped table-bordered">
@@ -232,21 +232,34 @@
                                         <th>Description</th>
                                         <th>File 1</th>
                                         <th>File 2</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                    <?php  $accs = mysqli_query($conn,"select * from tbl_accountant"); 
-                        if(!empty($accs)){
-                        while($acc = mysqli_fetch_array($accs))
-                        {
+                    <?php  $feeds = mysqli_query($conn,"select * from feeds"); 
+                        if(!empty($feeds)){
+                        while($feed = mysqli_fetch_array($feeds))
+                        { 
                         ?>
                                     <tr>
-                                        <td>Tiger Nixon</td>
-                                        <td>System Architect</td>
-                                        <td>Edinburgh</td>
-                                        <td>$320,800</td>
+                                        <td><?php echo $feed['feeds_Title'] ?></td>
+                                        <td><?php echo $feed['feeds_Description'] ?></td>
+                                        <td>
+                                            <?php if($feed['feeds_File_one']){ ?>    
+                                            <img src="uploads/feedsfiles/<?php echo $feed['feeds_File_one'] ?>"  width="100px" height="100px"  class="file1" alt="file1" />
+                                            <?php } ?>
+                                        </td>
+                                        <td>
+                                            <?php if($feed['feeds_File_two']){ ?>  
+                                            <img src="uploads/feedsfiles/<?php echo $feed['feeds_File_two'] ?>" width="100px" height="100px" class="file2" alt="file2" />
+                                            <?php } ?>
+                                        </td>
+                                        <td>
+                                            <i class="ti-credit-card"></i>
+                                            <i class="ti-trash"></i>
+                                        </td> 
                                     </tr>
-                    <?php } ?>
+                    <?php } } ?>
                                 </tbody>
                             </table>
                         </div>
