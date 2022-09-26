@@ -34,7 +34,7 @@
                         <div class="form-group">
                                     <label class="form-control-label">Description</label>
                                     <span class="spanerr"></span> 
-                                        <textarea class="form-control required" name="description" err=" Description is required" err="Description is required"></textarea> 
+                                        <textarea class="form-control required" name="description" err=" Description is required" err="Description is required" rows="5"></textarea> 
                                     <small class="form-text text-muted">Give your Post's/feed's Description</small>
                         </div>
                         <div class="form-group">
@@ -255,8 +255,14 @@
                                             <?php } ?>
                                         </td>
                                         <td>
-                                            <i class="ti-credit-card"></i>
-                                            <i class="ti-trash"></i>
+                                            
+                                            <a class="btn btn-info btn-xs detailsbutton" title="Edit"
+                                    href="editform.php?feeds_Id=<?php echo $feed['feeds_Id']; ?>"><i
+                                        class="menu-icon fa fa-edit"> </i></a>
+                                <a class="btn btn-danger btn-xs delete_button"
+                                    onclick="del(<?php echo $feed['feeds_Id']; ?>)" title="Delete"><i
+                                        class="menu-icon fa fa-trash"> </i> </a>
+                                            
                                         </td> 
                                     </tr>
                     <?php } } ?>
@@ -300,8 +306,7 @@
                 processData:false,
                 dataType: 'json',
                 Cache:false,
-                success: function(res) {
-                    console.log(res);
+                success: function(res) { 
                     if (res.success) {
                         Swal.fire({
                             icon: "success",
@@ -346,7 +351,7 @@ function del(id) {
     if (cnfrm) {
 
         $.ajax({
-            url: "includes/bedcategoryajax.php",
+            url: "ajaxcalls/feedsajax.php",
             method: "post",
             enctype: "multipart/form-data",
             data: {
@@ -362,7 +367,7 @@ function del(id) {
                         title: "Congratulations..",
                         text: res.success,
                     }).then(function() {
-                        window.location.href = './bedcategory.php'
+                        window.location.href = './feedform.php'
                     });
                 } else if (res.failed) {
                     Swal.fire({
@@ -370,7 +375,7 @@ function del(id) {
                         title: "Oops...",
                         text: res.failed,
                     }).then(function() {
-                        window.location.href = './bedcategory.php'
+                        window.location.href = './feedform.php'
                     });
                 }
             }
