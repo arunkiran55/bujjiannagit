@@ -9,13 +9,13 @@
                     <div class="col-sm-10">
                         <div class="page-header float-left">
                             <div class="page-title">
-                                <h1>Posts / Feeds</h1>
+                                <h1>Roles</h1>
                             </div>
                         </div>
                     </div> 
                     <div class="col-sm-2">
                         <button type="button" class="btn btn-primary mb-1" data-toggle="modal" data-target="#largeModal">
-                          Add Post / Feed
+                          Add Role
                       </button>
                     </div>
                 </div>
@@ -26,7 +26,7 @@
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="largeModalLabel">Add Post / Feed</h5>
+                            <h5 class="modal-title" id="largeModalLabel">Add Role</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -36,10 +36,9 @@
                                 <div class="row">
                                     <div class="col-md-3"></div>
                                     <div class="col-md-6">
-                                        <form role="form" method="POST" enctype="multipart/form-data"
-                                                    id="feedformadd">
+                                        <form role="form" method="POST" id="roleformadd">
                                         <div class="form-group">
-                                                    <label class="form-control-label">Role</label>
+                                                    <label class="form-control-label">Role Name</label>
                                                     <span class="spanerr"></span>  
                                                         <input type="text" class="form-control required" name="role" err=" Role is required" err="Role is required"> 
                                                     <small class="form-text text-muted">Give your Role Title</small>
@@ -65,50 +64,38 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <strong class="card-title">Your Feeds</strong>
+                            <strong class="card-title">Roles</strong>
                         </div>
                         <div class="card-body">
                             <table id="bootstrap-data-table" class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>Title</th>
-                                        <th>Description</th>
-                                        <th>File 1</th>
-                                        <th>File 2</th>
+                                        <th>S.no</th>
+                                        <th>Title</th> 
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                    <?php  $feeds = mysqli_query($conn,"select * from feeds"); 
-                        if(!empty($feeds)){
-                        while($feed = mysqli_fetch_array($feeds))
-                        { 
+                    <?php  $roles = mysqli_query($conn,"select * from roles"); 
+                        if(!empty($roles)){
+                        while($role = mysqli_fetch_array($roles))
+                        { $i=1;
                         ?>
                                     <tr>
-                                        <td><?php echo $feed['feeds_Title'] ?></td>
-                                        <td><?php echo $feed['feeds_Description'] ?></td>
+                                        <td><?php echo $i ?></td>
+                                        <td><?php echo $role['role_Title'] ?></td>
                                         <td>
-                                            <?php if($feed['feeds_File_one']){ ?>    
-                                            <img src="uploads/feedsfiles/<?php echo $feed['feeds_File_one'] ?>"  width="100px" height="100px"  class="file1" alt="file1" />
-                                            <?php } ?>
-                                        </td>
-                                        <td>
-                                            <?php if($feed['feeds_File_two']){ ?>  
-                                            <img src="uploads/feedsfiles/<?php echo $feed['feeds_File_two'] ?>" width="100px" height="100px" class="file2" alt="file2" />
-                                            <?php } ?>
-                                        </td>
-                                        <td>
-                                            
+                                            <?php // if(!$role['role_Title']=="Admin"){ ?>
                                             <a class="btn btn-info btn-xs detailsbutton" title="Edit"
-                                    href="editform.php?feeds_Id=<?php echo $feed['feeds_Id']; ?>"><i
-                                        class="menu-icon fa fa-edit"> </i></a>
-                                <a class="btn btn-danger btn-xs delete_button"
-                                    onclick="del(<?php echo $feed['feeds_Id']; ?>)" title="Delete"><i
-                                        class="menu-icon fa fa-trash"> </i> </a>
-                                            
+                                            href="editrole.php?role_Id=<?php echo $role['role_Id']; ?>"><i
+                                            class="menu-icon fa fa-edit"> </i></a>
+                                            <a class="btn btn-danger btn-xs delete_button"
+                                            onclick="del(<?php echo $role['role_Id']; ?>)" title="Delete"><i
+                                            class="menu-icon fa fa-trash"> </i> </a>
+                                            <?php // } ?>
                                         </td> 
                                     </tr>
-                    <?php } } ?>
+                    <?php $i++ ; } } ?>
                                 </tbody>
                             </table>
                         </div>
@@ -139,14 +126,12 @@
             }
         });   
         if (jQuery.inArray("err", arr) == '-1') { //checkingbool == "noerr"
-            var formdata = $("#feedformadd")[0];  
+            var formdata = $("#roleformadd").serialize();; 
+            console.log(formdata) 
             $.ajax({
-                url: "ajaxcalls/feedsajax.php",
-                method: "post",
-                enctype:"multipart/form-data",
-                data: new FormData(formdata),
-                contentType:false,
-                processData:false,
+                url: "ajaxcalls/rolesajax.php",
+                method: "post", 
+                data: formdata,
                 dataType: 'json',
                 Cache:false,
                 success: function(res) { 
@@ -156,7 +141,7 @@
                             title: "Congratulations..",
                             text: res.success,
                         }).then(function() {
-                            window.location.href = 'feedform.php'
+                            window.location.href = 'roles.php'
                         });
                     } else if (res.failed) {
                         Swal.fire({
@@ -164,7 +149,7 @@
                             title: "Oops...",
                             text: res.failed,
                         }).then(function() {
-                            window.location.href = './feedform.php'
+                            window.location.href = './roles.php'
                         });
                     } else if (res.exists) {
                         Swal.fire({
@@ -172,7 +157,7 @@
                             title: "Oops...",
                             text: res.exists,
                         }).then(function() {
-                            window.location.href = './feedform.php'
+                            window.location.href = './roles.php'
                         });
                     } else if (res.mandatory) {
                         Swal.fire({
@@ -180,7 +165,7 @@
                             title: "Oops...",
                             text: res.format,
                         }).then(function() {
-                            window.location.href = './feedform.php'
+                            window.location.href = './roles.php'
                         });
                     }
                 }
@@ -194,7 +179,7 @@ function del(id) {
     if (cnfrm) {
 
         $.ajax({
-            url: "ajaxcalls/feedsajax.php",
+            url: "ajaxcalls/rolesajax.php",
             method: "post",
             enctype: "multipart/form-data",
             data: {
@@ -210,7 +195,7 @@ function del(id) {
                         title: "Congratulations..",
                         text: res.success,
                     }).then(function() {
-                        window.location.href = './feedform.php'
+                        window.location.href = './roles.php'
                     });
                 } else if (res.failed) {
                     Swal.fire({
@@ -218,7 +203,7 @@ function del(id) {
                         title: "Oops...",
                         text: res.failed,
                     }).then(function() {
-                        window.location.href = './feedform.php'
+                        window.location.href = './roles.php'
                     });
                 }
             }

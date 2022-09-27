@@ -1,6 +1,5 @@
 <?php
-$conn = mysqli_connect('localhost','root','','medicalcollege');
-// print_r($_POST);exit;
+$conn = mysqli_connect('localhost','root','','medicalcollege'); 
 $type=$_POST['post_type'];
 
 if($type=="1"){	 
