@@ -1,7 +1,30 @@
-<?php include("common/header.php");
-    //   include("common/leftnav.php")   ?>
+<?php include("common/header.php");  ?>
 <div class="sufee-login d-flex align-content-center flex-wrap">
+<?php
+session_start();
+include "common/conn_db.php";
+if(isset($_POST['login_submit']))
+{
+    $user = mysqli_real_escape_string($conn,$_POST['useremail']);
+    $password=mysqli_real_escape_string($conn,$_POST['userpwd']); 
+    $login_check = mysqli_query($conn,"select * from users where email='".$user."' and password='".$password."' and status=1");
+    $count = mysqli_num_rows($login_check);
+    $fetch_user = mysqli_fetch_array($login_check);
+    if($count==1){
+        $_SESSION['username'] = $fetch_user['name'];
+        $_SESSION['mail'] = $fetch_user['email'];
+        $_SESSION['role'] = $fetch_user['role'];
+        $_SESSION['password'] = $fetch_user['password'];
+        $_SESSION['userid'] =$fetch_user['user_Id'];  
+        echo "<script>window.location.href='index.php'</script>";
+    }
+    else{
+         echo "<script>window.alert('Login Failed')</script>";
+        echo "<script>window.location.href='login.php'</script>";
+    }
+}
 
+?>
         <div class="container">
             <div class="login-content">
                 <div class="login-logo">
@@ -13,11 +36,11 @@
                     <form>
                         <div class="form-group">
                             <label>Email address</label>
-                            <input type="email" class="form-control" placeholder="Email">
+                            <input type="email" class="form-control" name="useremail" placeholder="Email">
                         </div>
                         <div class="form-group">
                             <label>Password</label>
-                            <input type="password" class="form-control" placeholder="Password">
+                            <input type="password" name="userpwd"  class="form-control" placeholder="Password">
                         </div>
                         <div class="checkbox">
                             <label>
@@ -28,7 +51,7 @@
                             </label>
 
                         </div>
-                        <button type="submit" class="btn btn-success btn-flat m-b-30 m-t-30">Sign in</button>
+                        <button type="submit" class="btn btn-success btn-flat m-b-30 m-t-30" name="login_submit">Sign in</button>
                        
                     </form>
                 </div>

@@ -9,13 +9,13 @@
                     <div class="col-sm-10">
                         <div class="page-header float-left">
                             <div class="page-title">
-                                <h1>Posts / Feeds</h1>
+                                <h1>Users</h1>
                             </div>
                         </div>
                     </div> 
                     <div class="col-sm-2">
                         <button type="button" class="btn btn-primary mb-1" data-toggle="modal" data-target="#largeModal">
-                          Add Post / Feed
+                          Add User
                       </button>
                     </div>
                 </div>
@@ -26,7 +26,7 @@
                 <div class="modal-dialog modal-lg" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="largeModalLabel">Add Post / Feed</h5>
+                            <h5 class="modal-title" id="largeModalLabel">Add User</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -36,31 +36,48 @@
                                 <div class="row">
                                     <div class="col-md-3"></div>
                                     <div class="col-md-6">
-                                        <form role="form" method="POST" enctype="multipart/form-data"
-                                                    id="feedformadd">
+                                        <form method="POST" enctype="multipart/form-data"  id="userformadd">
                                         <div class="form-group">
-                                                    <label class="form-control-label">Title</label>
+                                                    <label class="form-control-label">Name</label>
                                                     <span class="spanerr"></span>  
-                                                        <input type="text" class="form-control required" name="title" err=" Title is required" err="Title is required"> 
-                                                    <small class="form-text text-muted">Give your Post's/feed's Title</small>
+                                                        <input type="text" class="form-control required" name="name" err=" Name is required" err="Name is required"> 
+                                                    <small class="form-text text-muted">Give your Name</small>
                                         </div>
                                         <div class="form-group">
-                                                    <label class="form-control-label">Description</label>
+                                                    <label class="form-control-label">Email</label>
                                                     <span class="spanerr"></span> 
-                                                        <textarea class="form-control required" name="description" err=" Description is required" err="Description is required" rows="5"></textarea> 
-                                                    <small class="form-text text-muted">Give your Post's/feed's Description</small>
+                                                         <input type="mail" class="form-control required" name="email" err=" email is required" err="email is required">  
+                                                    <small class="form-text text-muted">Give your Email</small>
                                         </div>
                                         <div class="form-group">
-                                                    <label class="form-control-label">Upload File 1:</label>
+                                                    <label class="form-control-label">Password</label>
                                                     <span class="spanerr"></span> 
-                                                        <input type="file" class="form-control" name="file_1" id="file_1"> 
-                                                    <small class="form-text text-muted">Give your Post's/feed's File 1 (pdf/doc/jpg/png)</small>
+                                                         <input type="password" class="form-control required" name="pwd" err=" Password is required" err="Password is required">  
+                                                    <small class="form-text text-muted">Give your Password</small>
+                                        </div> 
+                                        <div class="form-group">
+                                                    <label class="form-control-label">Contact</label>
+                                                    <span class="spanerr"></span> 
+                                                         <input type="number" class="form-control required" name="phone" err=" Contact is required" err="Contact is required">  
+                                                    <small class="form-text text-muted">Give your Contact</small>
+                                        </div> 
+                                        <div class="form-group">
+                                            <label>Role</label>
+                                            <span class="spanerr"></span>
+                                             <select data-placeholder="    Select the role..." class="form-control" name="role" >
+                                                 <option selected disabled hidden>Choose role</option>
+                                                    <?php  $roles = mysqli_query($conn,"select * from roles"); 
+                                                        if(!empty($roles)){
+                                                        while($role = mysqli_fetch_array($roles)){  ?>
+                                                            <option value="<?php echo $role['role_Id'] ?>"><?php echo $role['role_Title'];?> </option>
+                                                    <?php } } ?>
+                                            </select>
                                         </div>
                                         <div class="form-group">
                                                     <label class="form-control-label">Upload File 2:</label>
                                                     <span class="spanerr"></span> 
-                                                        <input  type="file" class="form-control" name="file_2" id="file_2"> 
-                                                    <small class="form-text text-muted">Give your Post's/feed's File 2 (pdf/doc/jpg/png)</small>
+                                                        <input  type="file" class="form-control" name="file" id="file"> 
+                                                    <small class="form-text text-muted">Give your Image (jpg/png)</small>
                                         </div>
                                         <div class="text-center">
                                                 <input type="hidden" class="form-control" name="post_type" value="1" />
@@ -69,7 +86,6 @@
                                     </form>
                                     </div>
                                     <div class="col-md-3"></div>
-                                   
                                 </div>
                             </div>
                         </div>
@@ -84,45 +100,43 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <strong class="card-title">Your Feeds</strong>
+                            <strong class="card-title">Your Users</strong>
                         </div>
                         <div class="card-body">
                             <table id="bootstrap-data-table" class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
-                                        <th>Title</th>
-                                        <th>Description</th>
-                                        <th>File 1</th>
-                                        <th>File 2</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Role</th>
+                                        <th>Image</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                    <?php  $feeds = mysqli_query($conn,"select * from feeds"); 
+                    <?php  $feeds = mysqli_query($conn,"select a.*,b.role_Title from users as a left join roles as b on b.role_Id =a.role order by a.user_Id  desc"); 
                         if(!empty($feeds)){
                         while($feed = mysqli_fetch_array($feeds))
                         { 
                         ?>
                                     <tr>
-                                        <td><?php echo $feed['feeds_Title'] ?></td>
-                                        <td><?php echo $feed['feeds_Description'] ?></td>
+                                        <td><?php echo $feed['name'] ?></td>
+                                        <td><?php echo $feed['email'] ?></td>
                                         <td>
-                                            <?php if($feed['feeds_File_one']){ ?>    
-                                            <img src="uploads/feedsfiles/<?php echo $feed['feeds_File_one'] ?>"  width="100px" height="100px"  class="file1" alt="file1" />
-                                            <?php } ?>
+                                           <td><?php echo $feed['role_Title'] ?></td>
                                         </td>
                                         <td>
-                                            <?php if($feed['feeds_File_two']){ ?>  
-                                            <img src="uploads/feedsfiles/<?php echo $feed['feeds_File_two'] ?>" width="100px" height="100px" class="file2" alt="file2" />
+                                            <?php if($feed['image']){ ?>  
+                                            <img src="uploads/users/<?php echo $feed['image'] ?>" width="100px" height="100px" class="file2" alt="file2" />
                                             <?php } ?>
                                         </td>
                                         <td>
                                             
-                                            <a class="btn btn-info btn-xs detailsbutton" title="Edit"
-                                    href="editform.php?feeds_Id=<?php echo $feed['feeds_Id']; ?>"><i
+                                            <a class="btn btn-info btn-sm detailsbutton" title="Edit"
+                                    href="editform.php?feeds_Id=<?php echo $feed['user_Id']; ?>"><i
                                         class="menu-icon fa fa-edit"> </i></a>
-                                <a class="btn btn-danger btn-xs delete_button"
-                                    onclick="del(<?php echo $feed['feeds_Id']; ?>)" title="Delete"><i
+                                <a class="btn btn-danger btn-sm delete_button"
+                                    onclick="del(<?php echo $feed['user_Id']; ?>)" title="Delete"><i
                                         class="menu-icon fa fa-trash"> </i> </a>
                                             
                                         </td> 
@@ -158,9 +172,10 @@
             }
         });   
         if (jQuery.inArray("err", arr) == '-1') { //checkingbool == "noerr"
-            var formdata = $("#feedformadd")[0];  
+            var formdata = $("#userformadd")[0]; 
+            console.log(formdata);
             $.ajax({
-                url: "ajaxcalls/feedsajax.php",
+                url: "ajaxcalls/usersajax.php",
                 method: "post",
                 enctype:"multipart/form-data",
                 data: new FormData(formdata),
@@ -175,7 +190,7 @@
                             title: "Congratulations..",
                             text: res.success,
                         }).then(function() {
-                            window.location.href = 'feedform.php'
+                            window.location.href = 'usersform.php'
                         });
                     } else if (res.failed) {
                         Swal.fire({
@@ -183,7 +198,7 @@
                             title: "Oops...",
                             text: res.failed,
                         }).then(function() {
-                            window.location.href = './feedform.php'
+                            window.location.href = './usersform.php'
                         });
                     } else if (res.exists) {
                         Swal.fire({
@@ -191,7 +206,7 @@
                             title: "Oops...",
                             text: res.exists,
                         }).then(function() {
-                            window.location.href = './feedform.php'
+                            window.location.href = './usersform.php'
                         });
                     } else if (res.mandatory) {
                         Swal.fire({
@@ -199,7 +214,7 @@
                             title: "Oops...",
                             text: res.format,
                         }).then(function() {
-                            window.location.href = './feedform.php'
+                            window.location.href = './usersform.php'
                         });
                     }
                 }
@@ -211,11 +226,9 @@
 function del(id) {
     cnfrm = confirm("Are you sure you want to delete this record?");
     if (cnfrm) {
-
         $.ajax({
-            url: "ajaxcalls/feedsajax.php",
-            method: "post",
-            enctype: "multipart/form-data",
+            url: "ajaxcalls/usersajax.php",
+            method: "post", 
             data: {
                 "id": id,
                 "post_type": '3'
@@ -229,7 +242,7 @@ function del(id) {
                         title: "Congratulations..",
                         text: res.success,
                     }).then(function() {
-                        window.location.href = './feedform.php'
+                        window.location.href = './usersform.php'
                     });
                 } else if (res.failed) {
                     Swal.fire({
@@ -237,7 +250,7 @@ function del(id) {
                         title: "Oops...",
                         text: res.failed,
                     }).then(function() {
-                        window.location.href = './feedform.php'
+                        window.location.href = './usersform.php'
                     });
                 }
             }

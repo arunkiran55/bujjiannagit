@@ -1,3 +1,10 @@
+
+<?php  session_start();
+      if($_SESSION['mail']=="" || $_SESSION['username']==""|| $_SESSION['role']==""){
+         echo "<script>window.alert('Login Failed')</script>";
+         echo "<script>window.location.href='login.php'</script>";
+    }
+   ?>
 <aside id="left-panel" class="left-panel">
     <nav class="navbar navbar-expand-sm navbar-default">
         <div id="main-menu" class="main-menu collapse navbar-collapse">
@@ -32,7 +39,9 @@
                 <li>
                     <a href="feedform.php"> <i class="menu-icon fa fa-list"></i>Posts / Feeds</a>
                 </li>
-
+                <li>
+                    <a href="usersform.php"> <i class="menu-icon fa fa-user"></i>Users</a>
+                </li>
                 <!-- <li class="menu-item-has-children dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false"> <i class="menu-icon fa fa-area-chart"></i>Maps</a>
