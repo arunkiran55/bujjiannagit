@@ -1,6 +1,6 @@
 
 <?php  session_start();
-      if($_SESSION['mail']=="" || $_SESSION['username']==""|| $_SESSION['role']==""){
+      if($_SESSION['mail']=="" || $_SESSION['username']==""|| $_SESSION['role']=="" ||$_SESSION['userid']==""){
          echo "<script>window.alert('Login Failed')</script>";
          echo "<script>window.location.href='login.php'</script>";
     }

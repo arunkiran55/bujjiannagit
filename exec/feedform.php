@@ -90,6 +90,7 @@
                             <table id="bootstrap-data-table" class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
+                                        <th>S no</th>
                                         <th>Title</th>
                                         <th>Description</th>
                                         <th>File 1</th>
@@ -100,34 +101,36 @@
                                 <tbody>
                     <?php  $feeds = mysqli_query($conn,"select * from feeds"); 
                         if(!empty($feeds)){
+                            $i=1;
                         while($feed = mysqli_fetch_array($feeds))
                         { 
                         ?>
                                     <tr>
+                                        <td><?php echo $i; ?></td>
                                         <td><?php echo $feed['feeds_Title'] ?></td>
                                         <td><?php echo $feed['feeds_Description'] ?></td>
-                                        <td>
+                                        <td class="text-center">
                                             <?php if($feed['feeds_File_one']){ ?>    
-                                            <img src="uploads/feedsfiles/<?php echo $feed['feeds_File_one'] ?>"  width="100px" height="100px"  class="file1" alt="file1" />
+                                            <img style="border-radius: 10px" src="uploads/feedsfiles/<?php echo $feed['feeds_File_one'] ?>"  width="100px" height="100px"  class="table_img" alt="file1" />
                                             <?php } ?>
                                         </td>
-                                        <td>
+                                        <td class="text-center">
                                             <?php if($feed['feeds_File_two']){ ?>  
-                                            <img src="uploads/feedsfiles/<?php echo $feed['feeds_File_two'] ?>" width="100px" height="100px" class="file2" alt="file2" />
-                                            <?php } ?>
+                                            <img style="border-radius: 10px" src="uploads/feedsfiles/<?php echo $feed['feeds_File_two'] ?>" width="100px" height="100px" class="table_img" alt="file2" />
+                                            <?php  } ?>
                                         </td>
                                         <td>
                                             
-                                            <a class="btn btn-info btn-xs detailsbutton" title="Edit"
+                                            <a class="btn btn-success btn-sm detailsbutton" title="Edit"
                                     href="editform.php?feeds_Id=<?php echo $feed['feeds_Id']; ?>"><i
                                         class="menu-icon fa fa-edit"> </i></a>
-                                <a class="btn btn-danger btn-xs delete_button"
+                                <a class="btn btn-warning btn-sm delete_button"
                                     onclick="del(<?php echo $feed['feeds_Id']; ?>)" title="Delete"><i
                                         class="menu-icon fa fa-trash"> </i> </a>
                                             
                                         </td> 
                                     </tr>
-                    <?php } } ?>
+                    <?php  $i++; } } ?>
                                 </tbody>
                             </table>
                         </div>

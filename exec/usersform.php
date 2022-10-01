@@ -106,6 +106,7 @@
                             <table id="bootstrap-data-table" class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
+                                        <th>S no</th>
                                         <th>Name</th>
                                         <th>Email</th>
                                         <th>Role</th>
@@ -116,32 +117,34 @@
                                 <tbody>
                     <?php  $feeds = mysqli_query($conn,"select a.*,b.role_Title from users as a left join roles as b on b.role_Id =a.role order by a.user_Id  desc"); 
                         if(!empty($feeds)){
+                            $i=1;
                         while($feed = mysqli_fetch_array($feeds))
                         { 
                         ?>
                                     <tr>
+                                        <td><?php echo $i; ?></td>
                                         <td><?php echo $feed['name'] ?></td>
                                         <td><?php echo $feed['email'] ?></td>
                                         <td>
                                            <td><?php echo $feed['role_Title'] ?></td>
                                         </td>
-                                        <td>
+                                        <td class="text-center">
                                             <?php if($feed['image']){ ?>  
-                                            <img src="uploads/users/<?php echo $feed['image'] ?>" width="100px" height="100px" class="file2" alt="file2" />
+                                            <img style="border-radius: 10px" src="uploads/users/<?php echo $feed['image'] ?>" class="table_img" width="100px" height="100px" class="file2" alt="file2" />
                                             <?php } ?>
                                         </td>
                                         <td>
                                             
-                                            <a class="btn btn-info btn-sm detailsbutton" title="Edit"
-                                    href="editform.php?feeds_Id=<?php echo $feed['user_Id']; ?>"><i
+                                            <a class="btn btn-success btn-sm detailsbutton" title="Edit"
+                                    href="edituser.php?user_Id=<?php echo $feed['user_Id']; ?>"><i
                                         class="menu-icon fa fa-edit"> </i></a>
-                                <a class="btn btn-danger btn-sm delete_button"
+                                <a class="btn btn-warning btn-sm delete_button"
                                     onclick="del(<?php echo $feed['user_Id']; ?>)" title="Delete"><i
                                         class="menu-icon fa fa-trash"> </i> </a>
                                             
                                         </td> 
                                     </tr>
-                    <?php } } ?>
+                    <?php  $i++; } } ?>
                                 </tbody>
                             </table>
                         </div>

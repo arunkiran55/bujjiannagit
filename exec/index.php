@@ -1,26 +1,28 @@
 <?php include("common/header.php");
-      include("common/leftnav.php")   ?>
+      include("common/leftnav.php");
+$conn = mysqli_connect('localhost','root','','medicalcollege');
+   ?>
 
 <!-- Right Panel -->
 <div id="right-panel" class="right-panel">
     <?php include("common/midheader.php") ?>
     <!-- Content -->
-    <div class="content">
+    <div class="content h-100">
         <!-- Animated -->
         <div class="animated fadeIn">
             <!-- Widgets  -->
             <div class="row">
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-4 col-sm-12">
                     <div class="card">
                         <div class="card-body">
                             <div class="stat-widget-five">
                                 <div class="stat-icon dib flat-color-1">
-                                    <i class="pe-7s-cash"></i>
+                                    <i class="pe-7s-mail"></i>
                                 </div>
                                 <div class="stat-content">
                                     <div class="text-left dib">
-                                        <div class="stat-text">$<span class="count">23569</span></div>
-                                        <div class="stat-heading">Revenue</div>
+                                        <div class="stat-text"><span class="count"></span></div>
+                                        <div class="stat-heading">Feedbacks</div>
                                     </div>
                                 </div>
                             </div>
@@ -28,7 +30,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-3 col-md-6">
+                <!-- <div class="col-lg-4 col-sm-12">
                     <div class="card">
                         <div class="card-body">
                             <div class="stat-widget-five">
@@ -44,9 +46,9 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-4 col-sm-12">
                     <div class="card">
                         <div class="card-body">
                             <div class="stat-widget-five">
@@ -55,7 +57,9 @@
                                 </div>
                                 <div class="stat-content">
                                     <div class="text-left dib">
-                                        <div class="stat-text"><span class="count">349</span></div>
+                                        <?php $query = mysqli_query($conn, "select * from feeds");
+                                        $feedcount = mysqli_num_rows($query); ?>
+                                        <div class="stat-text"><span class="count"><?php echo $feedcount ?></span></div>
                                         <div class="stat-heading">Templates</div>
                                     </div>
                                 </div>
@@ -64,7 +68,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-3 col-md-6">
+                <div class="col-lg-4 col-sm-12">
                     <div class="card">
                         <div class="card-body">
                             <div class="stat-widget-five">
@@ -73,7 +77,9 @@
                                 </div>
                                 <div class="stat-content">
                                     <div class="text-left dib">
-                                        <div class="stat-text"><span class="count">2986</span></div>
+                                        <?php $query = mysqli_query($conn, "select * from users");
+                                        $usercount = mysqli_num_rows($query); ?>
+                                        <div class="stat-text"><span class="count"><?php echo $usercount ?></span></div>
                                         <div class="stat-heading">Clients</div>
                                     </div>
                                 </div>
@@ -86,14 +92,13 @@
             <!--  Traffic  -->
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="card">
+                    <!-- <div class="card">
                         <div class="card-body">
                             <h4 class="box-title">Traffic </h4>
                         </div>
                         <div class="row">
                             <div class="col-lg-8">
-                                <div class="card-body">
-                                    <!-- <canvas id="TrafficChart"></canvas>   -->
+                                <div class="card-body"> 
                                     <div id="traffic-chart" class="traffic-chart"></div>
                                 </div>
                             </div>
@@ -135,15 +140,14 @@
                                                 aria-valuemax="100"></div>
                                         </div>
                                     </div>
-                                </div> <!-- /.card-body -->
+                                </div> 
                             </div>
-                        </div> <!-- /.row -->
+                        </div>  
                         <div class="card-body"></div>
-                    </div>
+                    </div> -->
                 </div><!-- /# column -->
             </div>
-            <!--  /Traffic -->
-            <div class="clearfix"></div>
+            <!--  /Traffic --> 
             
         </div>
         <!-- .animated -->
