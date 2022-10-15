@@ -42,13 +42,13 @@ $type=$_POST['post_type'];
         $phone = mysqli_real_escape_string($conn,$_POST['phone']);
         $role= mysqli_real_escape_string($conn,$_POST['role']);
         $accimage = $_FILES['file']['name'];
-		if(!empty($_FILES['accimg']['name'])){
+		if(!empty($_FILES['file']['name'])){
             $accimg = mysqli_real_escape_string($conn,$_FILES['file']['name']);
         }else{
             $accimg = mysqli_real_escape_string($conn,$_POST['filehid']);
         }
         $imageFileType = pathinfo($accimg,PATHINFO_EXTENSION);
-			if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "JPG" && $imageFileType != "jpeg" && $imageFileType != "doc" && $imageFileType != "pdf" && $imageFileType != "docx" && $_FILES["accimg"]["name"] ) {
+			if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "JPG" && $imageFileType != "jpeg" && $imageFileType != "doc" && $imageFileType != "pdf" && $imageFileType != "docx" && $_FILES["file"]["name"] ) {
 				echo json_encode(array("format"=>" only JPG, JPEG, PNG, DOC & PDF files are allowed"));
 			}else{
 				$record_check = mysqli_query($conn,"select * from users where name='".$fname."' and email='".$mail."'");
@@ -67,7 +67,7 @@ $type=$_POST['post_type'];
 					}else{
 						$accimg = mysqli_real_escape_string($conn,$_POST['filehid']);
 						$imgrename=$accimg;
-					} 
+					}  
 					$id= mysqli_real_escape_string($conn,$_POST['hid']); 
 					$insert_state = mysqli_query($conn,"update users set name='".$fname."',email='".$mail."',password='".$pwd."',role='".$role."',contact='".$phone."',image='".$imgrename."',status='1',updatedon= CURDATE() where user_Id   ='".$id."'");
 				if($insert_state == 1)

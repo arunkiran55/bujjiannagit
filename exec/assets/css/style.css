@@ -2842,7 +2842,7 @@ header .form-inline .search-form.close {
 
 /* Footer */
 footer.site-footer {
-  padding: 0 1.875em;
+  /* padding: 0 1.875em; */
 }
 
 footer.site-footer .footer-inner {

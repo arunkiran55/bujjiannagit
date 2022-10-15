@@ -88,7 +88,7 @@ $(document).ready(function () {
         $(this).siblings(".spanerr").html("");
         checking="noerr";
       }
-    });
+    }); 
     if(checking=="noerr"){
           var data = $("#userformedit")[0];
           $.ajax({
@@ -101,6 +101,7 @@ $(document).ready(function () {
            dataType: 'json',
            Cache:false,
             success:function(res){
+                console.log(res)
                     if (res.success) {
                       Swal.fire({
                           icon: "success",
