@@ -27,8 +27,8 @@ if(isset($_POST['login_submit']))
         <div class="container">
             <div class="login-content">
                 <div class="login-logo">
-                    <a href="index.html">
-                        <img class="align-content" src="images/UDAY_CLINIC_LOGO.png" alt="logo" width="20%">
+                    <a href="login.php">
+                        <!-- <img class="align-content" src="images/UDAY_CLINIC_LOGO.png" alt="logo" width="20%"> -->
                     </a>
                 </div>
                 <div class="login-form">

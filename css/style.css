@@ -804,3 +804,6 @@ a:focus {
   border-radius: 50%!important;
   z-index:999;
 }
+.clickonicon{
+  font-size: 90%!important;
+}

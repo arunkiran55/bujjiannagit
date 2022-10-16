@@ -1,5 +1,5 @@
 
-<?php  session_start();
+<?php   
       if($_SESSION['mail']=="" || $_SESSION['username']==""|| $_SESSION['role']=="" ||$_SESSION['userid']==""){
          echo "<script>window.alert('Login Failed')</script>";
          echo "<script>window.location.href='login.php'</script>";

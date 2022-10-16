@@ -54,7 +54,7 @@
           </div>
         </div>
         <div class="col-md-6 col-lg-3 info-col">
-          <div class="info_contact">
+          <!-- <div class="info_contact">
             <h4>
               Newsletter
             </h4>
@@ -64,7 +64,7 @@
                 Subscribe
               </button>
             </form>
-          </div>
+          </div> -->
         </div>
         <div class="col-md-6 col-lg-3 info-col">
           <div class="map_container">

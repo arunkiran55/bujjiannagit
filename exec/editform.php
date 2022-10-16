@@ -32,7 +32,13 @@
                                     <span class="spanerr"></span> 
                                         <input type="file" class="form-control" name="file_1" id="file_1"> 
                                     <small class="form-text text-muted">Give your Post's/feed's File 1 (pdf/doc/jpg/png)</small>
+                                    <?php if($feed['feeds_File_one']){ 
+                                         $modal= explode(".",$feed['feeds_File_one']);
+                                            if($modal[1]=="jpg" || $modal[1]=="jpeg" || $modal[1]=="png" || $modal[1]=="JPG" ){ ?>
                                     <img src="uploads/feedsfiles/<?php echo $feed['feeds_File_one'] ?>"  width="100px" height="100px"  class="file1" alt="file1" />
+                                    <?php }else{ ?>
+                                        <a href="uploads/feedsfiles/<?php echo $feed['feeds_File_two'] ?>" target="_blank"><?php echo $feed['feeds_File_one'] ?></a>
+                                    <?php } } ?>
                                     <input type="hidden" class="form-control" name="file1hid" value="<?php echo $feed['feeds_File_one'] ?>">
                         </div>
                         <div class="form-group">
@@ -40,7 +46,13 @@
                                     <span class="spanerr"></span> 
                                         <input  type="file" class="form-control" name="file_2" id="file_2"> 
                                     <small class="form-text text-muted">Give your Post's/feed's File 2 (pdf/doc/jpg/png)</small>
-                                    <img src="uploads/feedsfiles/<?php echo $feed['feeds_File_two'] ?>" width="100px" height="100px" class="file2" alt="file2" />
+                                    <?php if($feed['feeds_File_two']){ 
+                                         $modal= explode(".",$feed['feeds_File_two']);
+                                            if($modal[1]=="jpg" || $modal[1]=="jpeg" || $modal[1]=="png" || $modal[1]=="JPG" ){ ?>
+                                            <img src="uploads/feedsfiles/<?php echo $feed['feeds_File_two'] ?>" width="100px" height="100px" class="file2" alt="file2" />
+                                        <?php }else{ ?>
+                                            <a href="uploads/feedsfiles/<?php echo $feed['feeds_File_two'] ?>" target="_blank"><?php echo $feed['feeds_File_two'] ?></a>
+                                        <?php } } ?>
                                     <input type="hidden" class="form-control" name="file2hid" value="<?php echo $feed['feeds_File_two'] ?>">
                         </div>
                         <div class="text-center">

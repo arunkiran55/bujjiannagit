@@ -23,7 +23,7 @@ if($type=="1"){
 						if($_FILES['file_1']['name']!=""){
 							$fone = mysqli_real_escape_string($conn,$_FILES['file_1']['name']);
 							$imageFileType = pathinfo($fone,PATHINFO_EXTENSION);
-							if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "JPG" && $imageFileType != "jpeg" && $imageFileType != "gif" && $imageFileType != "pdf" && $imageFileType != "doc" && $imageFileType != "jpeg" ) {
+							if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "JPG" && $imageFileType != "jpeg" && $imageFileType != "gif" && $imageFileType != "pdf" && $imageFileType != "doc" && $imageFileType != "doc" &&$imageFileType != "docx" && $imageFileType != "pdf") {
 								echo "<script>swal('only JPG, JPEG, PNG & GIF files are allowed').then(function() {
 									window.location.href='../feedform.php'
 								});</script>";
@@ -37,7 +37,7 @@ if($type=="1"){
 						if($_FILES['file_2']['name']!=""){
 							$ftwo = mysqli_real_escape_string($conn,$_FILES['file_2']['name']);
 							$imageFileType = pathinfo($ftwo,PATHINFO_EXTENSION);
-							if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "JPG" && $imageFileType != "jpeg" && $imageFileType != "gif" && $imageFileType != "pdf" && $imageFileType != "doc" && $imageFileType != "jpeg" ) {
+							if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "JPG" && $imageFileType != "jpeg" && $imageFileType != "gif" && $imageFileType != "pdf" && $imageFileType != "doc" && $imageFileType != "doc" &&$imageFileType != "docx" && $imageFileType != "pdf" ) {
 								echo "<script>swal('only JPG, JPEG, PNG & GIF files are allowed').then(function() {
 									window.location.href='../feedform.php'
 								});</script>";
@@ -93,7 +93,7 @@ if($type=="1"){
                     if($_FILES['file_1']['name']!=""){
 							$fone = mysqli_real_escape_string($conn,$_FILES['file_1']['name']);
 							$imageFileType = pathinfo($fone,PATHINFO_EXTENSION);
-							if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "JPG" && $imageFileType != "jpeg" && $imageFileType != "gif" && $imageFileType != "pdf" && $imageFileType != "doc" && $imageFileType != "jpeg" ) {
+							if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "JPG" && $imageFileType != "jpeg" && $imageFileType != "gif" && $imageFileType != "pdf" && $imageFileType != "doc"&& $imageFileType != "doc" &&$imageFileType != "docx" && $imageFileType != "pdf" ) {
 								echo "<script>swal('only JPG, JPEG, PNG & GIF files are allowed').then(function() {
 									window.location.href='../feedform.php'
 								});</script>";
@@ -110,7 +110,7 @@ if($type=="1"){
 						if($_FILES['file_2']['name']!=""){
 							$ftwo = mysqli_real_escape_string($conn,$_FILES['file_2']['name']);
 							$imageFileType = pathinfo($ftwo,PATHINFO_EXTENSION);
-							if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "JPG" && $imageFileType != "jpeg" && $imageFileType != "gif" && $imageFileType != "pdf" && $imageFileType != "doc" && $imageFileType != "jpeg" ) {
+							if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "JPG" && $imageFileType != "jpeg" && $imageFileType != "gif" && $imageFileType != "pdf" && $imageFileType != "doc" && $imageFileType != "doc" &&$imageFileType != "docx" && $imageFileType != "pdf" ) {
 								echo "<script>swal('only JPG, JPEG, PNG & GIF files are allowed').then(function() {
 									window.location.href='../feedform.php'
 								});</script>";
