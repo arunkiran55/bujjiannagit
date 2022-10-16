@@ -485,6 +485,8 @@ a:focus {
 .client_section .client_container .img-box {
   width: 125px;
   margin-right: 15px;
+  background-color: #063547;
+  border-radius: 50%;
 }
 
 .client_section .client_container .img-box img {
@@ -793,3 +795,12 @@ a:focus {
   color: inherit;
 }
 /*# sourceMappingURL=style.css.map */
+.stories{
+  width: 60px!important;
+  position: fixed;
+  top: 85vh;
+  left: 90vw; 
+  background-color: #063547!important;
+  border-radius: 50%!important;
+  z-index:999;
+}

@@ -1,5 +1,6 @@
 <?php
 $conn = mysqli_connect('localhost','root','','medicalcollege'); 
+session_start();
 $type=$_POST['post_type'];
 	if($type=="1"){
         $fname = mysqli_real_escape_string($conn,$_POST['name']);

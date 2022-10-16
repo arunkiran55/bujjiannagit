@@ -1,12 +1,14 @@
 <?php
 $conn = mysqli_connect('localhost','root','','medicalcollege'); 
+session_start();
 $type=$_POST['post_type'];
 
 if($type=="1"){	 
         $feeds_Title = mysqli_real_escape_string($conn,$_POST['title']);
         $feeds_Description = mysqli_real_escape_string($conn,$_POST['description']); 
 		$file1 = $_FILES['file_1']['name'];
-		$file2 = $_FILES['file_2']['name'];   
+		$file2 = $_FILES['file_2']['name'];  
+		$sess_id = $_SESSION['userid'];
 		$imgrename1="";
 		$imgrename2=""; 
 			if($feeds_Title=="" || $feeds_Description==""  ) {
@@ -49,7 +51,7 @@ if($type=="1"){
 							 $imgrename1="";
 							 $imgrename2="";
 						} 
-                    $insert_state = mysqli_query($conn,"insert into feeds set feeds_Title	='".$feeds_Title."',feeds_Description='".$feeds_Description."',feeds_File_one='".$imgrename1."',feeds_File_two='".$imgrename2."', feeds_Status='1',feeds_Createddate=CURDATE()");        
+                    $insert_state = mysqli_query($conn,"insert into feeds set feeds_Title	='".$feeds_Title."',feeds_Description='".$feeds_Description."',feeds_File_one='".$imgrename1."',feeds_File_two='".$imgrename2."', feeds_Status='1',feeds_Createddate=CURDATE(),feeds_Createdby='".$sess_id."'");        
 					if($insert_state == 1){
 							echo json_encode(array("success"=>"Record is inserted successfully"));
 						}else{
@@ -64,7 +66,8 @@ if($type=="1"){
 		$feeds_Title = mysqli_real_escape_string($conn,$_POST['title']);
         $feeds_Description = mysqli_real_escape_string($conn,$_POST['description']); 
 		$file1 = $_FILES['file_1']['name'];
-		$file2 = $_FILES['file_2']['name'];   
+		$file2 = $_FILES['file_2']['name'];  
+		$sess_id= $_SESSION['userid'];
 		$imgrename1="";
 		$imgrename2=""; 
 		if(!empty($_FILES['file_1']['name'])){
@@ -126,7 +129,7 @@ if($type=="1"){
 							 $imgrename2="";
 						} 
 						$id= mysqli_real_escape_string($conn,$_POST['hid']); 
-                    $insert_state = mysqli_query($conn,"update feeds set feeds_Title='".$feeds_Title."',feeds_Description='".$feeds_Description."',feeds_File_one='".$imgrename1."',feeds_File_two='".$imgrename2."',feeds_Updateddate=CURDATE() where feeds_Id='".$id."'");  
+                    $insert_state = mysqli_query($conn,"update feeds set feeds_Title='".$feeds_Title."',feeds_Description='".$feeds_Description."',feeds_File_one='".$imgrename1."',feeds_File_two='".$imgrename2."',feeds_Updateddate=CURDATE(),feeds_Createdby='".$sess_id."' where feeds_Id='".$id."'");  
  
 					if($insert_state == 1){
 							echo json_encode(array("success"=>"Record is updated successfully"));

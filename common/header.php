@@ -72,3 +72,10 @@
         </nav>
       </div>
     </header>
+
+    <span class="stories text-center py-3" title="stories">
+        <a href="stories.php" title="stories">
+        <i class="fa fa-weixin" style="font-size:30px;color:white" aria-hidden="true"></i>  
+        </a> 
+    </span>
+    

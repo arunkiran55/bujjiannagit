@@ -1,7 +1,6 @@
 <?php include("common/header.php");  ?>
 <div class="sufee-login d-flex align-content-center flex-wrap">
-<?php
-session_start();
+<?php 
 include "common/conn_db.php";
 if(isset($_POST['login_submit']))
 {
@@ -15,7 +14,7 @@ if(isset($_POST['login_submit']))
         $_SESSION['mail'] = $fetch_user['email'];
         $_SESSION['role'] = $fetch_user['role']; 
         $_SESSION['userid'] =$fetch_user['user_Id'];  
-        $_SESSION['image'] = $fetch_user['image'];  
+        $_SESSION['image'] = $fetch_user['image'];    
         echo "<script>window.location.href='./index.php'</script>";
     }
     else{
