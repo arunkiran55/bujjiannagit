@@ -103,7 +103,7 @@
                             <strong class="card-title">Your Users</strong>
                         </div>
                         <div class="card-body">
-                            <table id="usersTable" class="table table-striped table-bordered">
+                            <table id="usersTable" class="table table-striped table-bordered" style="overflow-x:auto;">
                                 <thead>
                                     <tr>
                                         <th>S no</th>

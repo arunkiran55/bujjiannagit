@@ -87,7 +87,7 @@
                             <strong class="card-title">Your Feeds</strong>
                         </div>
                         <div class="card-body">
-                            <table id="formsTable" class="table table-striped table-bordered">
+                            <table id="formsTable" class="table table-striped table-bordered" style="overflow-x:auto;">
                                 <thead>
                                     <tr>
                                         <th>S no</th>

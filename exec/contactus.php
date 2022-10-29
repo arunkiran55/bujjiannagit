@@ -30,7 +30,7 @@
                             <strong class="card-title">Contact Us</strong>
                         </div>
                         <div class="card-body">
-                            <table id="contactTable" class="table table-striped table-bordered">
+                            <table id="contactTable" class="table table-striped table-bordered" style="overflow-x:auto;">
                                 <thead>
                                     <tr>
                                         <th>S no</th>

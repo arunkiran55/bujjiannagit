@@ -67,7 +67,7 @@
                             <strong class="card-title">Roles</strong>
                         </div>
                         <div class="card-body">
-                            <table id="rolesTable" class="table table-striped table-bordered">
+                            <table id="rolesTable" class="table table-striped table-bordered" style="overflow-x:auto;">
                                 <thead>
                                     <tr>
                                         <th>S.no</th>
