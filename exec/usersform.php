@@ -103,7 +103,7 @@
                             <strong class="card-title">Your Users</strong>
                         </div>
                         <div class="card-body">
-                            <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                            <table id="usersTable" class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
                                         <th>S no</th>
@@ -162,6 +162,9 @@
 <?php include("common/footer.php") ?>
     <script>   
     $(document).ready(function() {
+
+    $('#usersTable').DataTable();
+
     $("form").submit(function(e) { 
         e.preventDefault(); 
         let arr = []; 

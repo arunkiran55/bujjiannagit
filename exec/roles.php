@@ -67,7 +67,7 @@
                             <strong class="card-title">Roles</strong>
                         </div>
                         <div class="card-body">
-                            <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                            <table id="rolesTable" class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
                                         <th>S.no</th>
@@ -86,10 +86,10 @@
                                         <td><?php echo $role['role_Title'] ?></td>
                                         <td>
                                             <?php // if(!$role['role_Title']=="Admin"){ ?>
-                                            <a class="btn btn-info btn-xs detailsbutton" title="Edit"
+                                            <a class="btn btn-success btn-xs detailsbutton" title="Edit"
                                             href="editrole.php?role_Id=<?php echo $role['role_Id']; ?>"><i
                                             class="menu-icon fa fa-edit"> </i></a>
-                                            <a class="btn btn-danger btn-xs delete_button"
+                                            <a class="btn btn-warning btn-xs delete_button"
                                             onclick="del(<?php echo $role['role_Id']; ?>)" title="Delete"><i
                                             class="menu-icon fa fa-trash"> </i> </a>
                                             <?php // } ?>
@@ -113,6 +113,8 @@
 <?php include("common/footer.php") ?>
     <script>   
     $(document).ready(function() {
+    $('#rolesTable').DataTable();
+
     $("form").submit(function(e) { 
         e.preventDefault(); 
         let arr = []; 

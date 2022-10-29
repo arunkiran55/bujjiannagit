@@ -42,6 +42,9 @@
                 <li>
                     <a href="usersform.php"> <i class="menu-icon fa fa-user"></i>Users</a>
                 </li>
+                <li>
+                    <a href="contactus.php"> <i class="menu-icon fa fa-user"></i>Contact us</a>
+                </li>
                 <!-- <li class="menu-item-has-children dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                         aria-expanded="false"> <i class="menu-icon fa fa-area-chart"></i>Maps</a>

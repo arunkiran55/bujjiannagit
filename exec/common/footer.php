@@ -48,6 +48,7 @@
 <!-- sweet alert -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.all.min.js"></script>
 <!-- end -->
+<script type="text/javascript" language="javascript" src="http://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 <!--Local Stuff-->
 <script>
     jQuery(document).ready(function ($) {

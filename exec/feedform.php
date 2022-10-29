@@ -87,7 +87,7 @@
                             <strong class="card-title">Your Feeds</strong>
                         </div>
                         <div class="card-body">
-                            <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                            <table id="formsTable" class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
                                         <th>S no</th>
@@ -147,6 +147,9 @@
   
 <?php include("common/footer.php") ?>
     <script>   
+    $(document).ready( function () {
+        $('#formsTable').DataTable();
+    } );
     $(document).ready(function() {
     $("form").submit(function(e) { 
         e.preventDefault(); 
