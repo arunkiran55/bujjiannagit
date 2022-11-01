@@ -996,8 +996,8 @@ header .form-inline {
     }
     .user-avatar {
         float: right;
-        width: 30px;
-        height: 30px;
+        width: 30px!important;
+        height: 30px!important;
     }
     .user-info .name {
         color: #8c8c8c;

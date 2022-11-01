@@ -10,8 +10,8 @@ $type=$_POST['post_type'];
         $role= mysqli_real_escape_string($conn,$_POST['role']);
         $accimage = $_FILES['file']['name'];
         $imageFileType = pathinfo($accimage,PATHINFO_EXTENSION);
-			if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "JPG" && $imageFileType != "jpeg" && $imageFileType != "doc" && $imageFileType != "pdf" && $imageFileType != "docx"  && $_FILES["file"]["name"] ) {
-				echo json_encode(array("format"=>" only JPG, JPEG, PNG, PDF, DOC & DOCX files are allowed"));
+			if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "JPG" && $imageFileType != "jpeg"  && $_FILES["file"]["name"] ) {
+				echo json_encode(array("format"=>" only JPG, JPEG, PNG files are allowed"));
 			}else{
 				$record_check = mysqli_query($conn,"select * from users where contact='".$phone."'");
 				$record_checks = mysqli_num_rows($record_check);
@@ -49,8 +49,8 @@ $type=$_POST['post_type'];
             $accimg = mysqli_real_escape_string($conn,$_POST['filehid']);
         }
         $imageFileType = pathinfo($accimg,PATHINFO_EXTENSION);
-			if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "JPG" && $imageFileType != "jpeg" && $imageFileType != "doc" && $imageFileType != "pdf" && $imageFileType != "docx" && $_FILES["file"]["name"] ) {
-				echo json_encode(array("format"=>" only JPG, JPEG, PNG, DOC & PDF files are allowed"));
+			if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "JPG" && $imageFileType != "jpeg" && $_FILES["file"]["name"] ) {
+				echo json_encode(array("format"=>" only JPG, JPEG, PNG files are allowed"));
 			}else{
 				$record_check = mysqli_query($conn,"select * from users where name='".$fname."' and email='".$mail."'");
 				$record_checks = mysqli_num_rows($record_check);

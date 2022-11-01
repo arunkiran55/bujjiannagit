@@ -1538,8 +1538,8 @@ header .form-inline .search-form.close {
 
 .user-area .user-avatar {
   float: right;
-  width: 30px;
-  height: 30px;
+  width: 30px!important;
+  height: 30px!important;
 }
 
 .user-area .user-info .name {
